@@ -23,13 +23,23 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   void _toggleFavourite(Meal meal) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+
     if (favouriteMeals.contains(meal)) {
       setState(() {
         favouriteMeals.remove(meal);
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Meal was removed from Favourites...'),
+          duration: Duration(milliseconds: 500),
+        ));
       });
     } else {
       setState(() {
         favouriteMeals.add(meal);
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Meal was added to Favourites!'),
+          duration: Duration(milliseconds: 500),
+        ));
       });
     }
   }
